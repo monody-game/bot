@@ -1,0 +1,18 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "commonjs",
+    "rootDir": "src",
+    "outDir": "dist",
+    "target": "ESNext",
+    "sourceMap": true,
+
+    "strict": true,
+    "noEmitOnError": true,
+    "noUncheckedIndexedAccess": true
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules"
+  ]
+}
