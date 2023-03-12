@@ -38,8 +38,6 @@ export default (client: Client): void => {
 const writeStatus = async function (client: Client) {
   const snowflake: Snowflake = config.channels.STATUS;
 
-  await clearChannel(client, snowflake);
-
   const apiStatus = await getApiStatus();
   const wsStatus = await getWsStatus();
 
@@ -47,15 +45,27 @@ const writeStatus = async function (client: Client) {
   wsClient.drop();
 
   const channel = client.channels.cache.get(snowflake) as TextChannel;
-
-  await channel.send({
-    embeds: [
-      Embeds.base(
-        `\`\`🤖\`\` Bot : 🟢\n
+  const date = new Date();
+  const embed = Embeds.base(
+    `\`\`🤖\`\` Bot : 🟢\n
         \`\`⚙️\`\`️ API : ${emojify(apiStatus.status, apiStatus.latency)}\n
-        \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status, wsStatus.latency)}`
-      ),
-    ],
+        \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status, wsStatus.latency)}`,
+    `Status des services (${date.getHours()}:${date.getMinutes()})`
+  );
+
+  const message = channel.messages.cache.last();
+
+  if (!message?.author.bot) {
+    await clearChannel(client, snowflake);
+    await channel.send({
+      embeds: [embed],
+    });
+
+    return;
+  }
+
+  await message.edit({
+    embeds: [embed],
   });
 };
 

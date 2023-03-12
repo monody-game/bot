@@ -12,7 +12,7 @@ dev:
 
 prod:
   api: "https://monody.fr/api"
-  ws: "https://monody.fr/socket.io"
+  ws: "https://monody.fr"
   guild: "824249714382864394"
   channels:
     STATUS: "1084237664833785888"
