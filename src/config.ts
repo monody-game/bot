@@ -23,6 +23,7 @@ type EnvConfigKey = {
     PLAY: Snowflake;
   };
   api: string;
+  ws: string;
 };
 
 const file: Config = parse(

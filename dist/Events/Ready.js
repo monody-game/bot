@@ -2,6 +2,8 @@ import { Commands } from "../Commands/CommandList.js";
 import config from "../config.js";
 import { Embeds } from "../Utils/Embeds.js";
 import { apiFetch } from "../Utils/Fetch.js";
+import { container } from "tsyringe";
+import { WsClient } from "../Utils/WsClient.js";
 var ServiceStatus;
 (function (ServiceStatus) {
     ServiceStatus[ServiceStatus["Ok"] = 0] = "Ok";
@@ -12,22 +14,24 @@ export default (client) => {
     client.on("ready", async () => {
         if (!client.user || !client.application)
             return;
-        console.log("Registering slash commands ...");
+        console.info("Registering slash commands ...");
         await client.application.commands.set(Commands);
-        console.log("Done.");
+        console.info("Done.");
         await writeStatus(client);
-        console.log("Bot is up !");
+        console.info("Bot is up !");
     });
 };
 const writeStatus = async function (client) {
     const snowflake = config.channels.STATUS;
     await clearChannel(client, snowflake);
-    const { status, latency } = await getApiStatus();
+    const apiStatus = await getApiStatus();
+    const wsStatus = await getWsStatus();
     const channel = client.channels.cache.get(snowflake);
     await channel.send({
         embeds: [
             Embeds.base(`\`\`🤖\`\` Bot : 🟢\n
-        \`\`⚙️\`\`️ API : ${emojify(status)} (${latency}ms)`),
+        \`\`⚙️\`\`️ API : ${emojify(apiStatus.status)} (${apiStatus.latency}ms)\n
+        \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status)} (${wsStatus.latency}ms)`),
         ],
     });
 };
@@ -37,7 +41,7 @@ const clearChannel = async function (client, snowflake) {
     await channel.bulkDelete(fetched);
 };
 const getApiStatus = async function () {
-    console.log("Retrieving API status");
+    console.info("Retrieving API status");
     let status = ServiceStatus.Ok;
     let latency = 0;
     try {
@@ -59,6 +63,14 @@ const getApiStatus = async function () {
     return {
         status,
         latency,
+    };
+};
+const getWsStatus = async function () {
+    console.info("Retrieving WS status");
+    const client = container.resolve(WsClient);
+    return {
+        latency: await client.ping(),
+        status: ServiceStatus.Ok
     };
 };
 const emojify = (status) => {

@@ -4,6 +4,7 @@ monody:
 
 dev:
   api: "https://localhost/api"
+  ws: "https://localhost:6001"
   guild: "1044329041643192421"
   channels:
     STATUS: "1055853685231591515"
@@ -11,6 +12,7 @@ dev:
 
 prod:
   api: "https://monody.fr/api"
+  ws: "https://monody.fr/socket.io"
   guild: "824249714382864394"
   channels:
     STATUS: "1084237664833785888"
