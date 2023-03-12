@@ -24,7 +24,9 @@ jobs:
 
       - name: ⚙️ Build ts code
         shell: bash
-        run: yarn build
+        run: | 
+          yarn 
+          yarn build
 
       - name: ⬆️ Deploying
         uses: appleboy/ssh-action@master
