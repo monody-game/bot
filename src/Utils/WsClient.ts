@@ -1,33 +1,45 @@
-import {singleton} from "tsyringe";
-import {io, Socket} from "socket.io-client";
-import config from "../config.js";
+import { singleton } from "tsyringe";
+import { io, Socket } from "socket.io-client";
+import config from "./config.js";
+import { ServiceStatus } from "./const.js";
 
 @singleton()
 export class WsClient {
-  public connection: Socket;
+  public connection?: Socket;
 
-  constructor() {
+  init(): Promise<ServiceStatus> {
     this.connection = io(config.ws, {
       rejectUnauthorized: false,
-      secure: true
-    })
+      retries: 0,
+      secure: true,
+      ackTimeout: 1000,
+    });
 
-    this.connection.on('error', () => {
-      console.log('Error connecting to socket')
-    })
+    return new Promise((resolve, reject) => {
+      this.connection?.on("connect", () => {
+        resolve(ServiceStatus.Ok);
+      });
+
+      this.connection?.on("connect_error", () => {
+        resolve(ServiceStatus.Down);
+      });
+    });
+  }
+
+  drop(): void {
+    this.connection?.disconnect();
   }
 
   /**
    * Returns WS connection latency
    */
-  public ping(): Promise<number>
-  {
+  public ping(): Promise<number> {
     const start = Date.now();
 
     return new Promise((resolve, reject) => {
-      this.connection.emit('ping', () => {
+      this.connection?.emit("ping", () => {
         resolve(Date.now() - start);
-      })
-    })
+      });
+    });
   }
 }

@@ -1,5 +1,5 @@
 import { EmbedBuilder } from "discord.js";
-import config from "../config.js";
+import config from "./config.js";
 
 export class Embeds {
   static base(content: string): EmbedBuilder {

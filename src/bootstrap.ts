@@ -1,4 +1,4 @@
 import * as dotenv from "dotenv";
-import "reflect-metadata"
+import "reflect-metadata";
 
 dotenv.config();

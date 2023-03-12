@@ -1,15 +1,11 @@
 import { Commands } from "../Commands/CommandList.js";
-import config from "../config.js";
+import config from "../Utils/config.js";
 import { Embeds } from "../Utils/Embeds.js";
 import { apiFetch } from "../Utils/Fetch.js";
 import { container } from "tsyringe";
 import { WsClient } from "../Utils/WsClient.js";
-var ServiceStatus;
-(function (ServiceStatus) {
-    ServiceStatus[ServiceStatus["Ok"] = 0] = "Ok";
-    ServiceStatus[ServiceStatus["Maintenance"] = 1] = "Maintenance";
-    ServiceStatus[ServiceStatus["Down"] = 2] = "Down";
-})(ServiceStatus || (ServiceStatus = {}));
+import { ServiceStatus } from "../Utils/const.js";
+const wsClient = container.resolve(WsClient);
 export default (client) => {
     client.on("ready", async () => {
         if (!client.user || !client.application)
@@ -18,20 +14,28 @@ export default (client) => {
         await client.application.commands.set(Commands);
         console.info("Done.");
         await writeStatus(client);
+        setInterval(async () => {
+            await writeStatus(client);
+        }, 60000);
         console.info("Bot is up !");
     });
 };
+/**
+ * Write the embed with services' status
+ */
 const writeStatus = async function (client) {
     const snowflake = config.channels.STATUS;
     await clearChannel(client, snowflake);
     const apiStatus = await getApiStatus();
     const wsStatus = await getWsStatus();
+    // Dropping ws connection in order to not stack connections for further needs
+    wsClient.drop();
     const channel = client.channels.cache.get(snowflake);
     await channel.send({
         embeds: [
             Embeds.base(`\`\`🤖\`\` Bot : 🟢\n
-        \`\`⚙️\`\`️ API : ${emojify(apiStatus.status)} (${apiStatus.latency}ms)\n
-        \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status)} (${wsStatus.latency}ms)`),
+        \`\`⚙️\`\`️ API : ${emojify(apiStatus.status, apiStatus.latency)}\n
+        \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status, wsStatus.latency)}`),
         ],
     });
 };
@@ -67,16 +71,16 @@ const getApiStatus = async function () {
 };
 const getWsStatus = async function () {
     console.info("Retrieving WS status");
-    const client = container.resolve(WsClient);
+    const status = await wsClient.init();
     return {
-        latency: await client.ping(),
-        status: ServiceStatus.Ok
+        latency: await wsClient.ping(),
+        status,
     };
 };
-const emojify = (status) => {
+const emojify = (status, latency) => {
     switch (status) {
         case ServiceStatus.Ok:
-            return "🟢";
+            return `🟢 (${latency}ms)`;
         case ServiceStatus.Maintenance:
             return "🟠 (maintenance)";
         case ServiceStatus.Down:

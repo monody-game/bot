@@ -1,4 +1,4 @@
-import config from "../config.js";
+import config from "./config.js";
 import * as https from "node:https";
 import got from "got";
 
