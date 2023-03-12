@@ -1,5 +1,5 @@
 import { CommandInteraction } from "discord.js";
-import { Command } from "./Command";
+import { Command } from "./Command.js";
 
 export const PingCommand: Command = {
   name: "ping",
@@ -8,10 +8,10 @@ export const PingCommand: Command = {
     const reply = await interaction.reply({
       content: "Pong ?",
       ephemeral: true,
-      fetchReply: true
+      fetchReply: true,
     });
 
-    const diff = reply.createdTimestamp - interaction.createdTimestamp
-    await interaction.editReply(`🏓 Pong in ${diff}ms !`)
+    const diff = reply.createdTimestamp - interaction.createdTimestamp;
+    await interaction.editReply(`🏓 Pong in ${diff}ms !`);
   },
 };

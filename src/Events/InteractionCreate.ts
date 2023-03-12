@@ -1,5 +1,5 @@
 import { Client, CommandInteraction, Interaction } from "discord.js";
-import { Commands } from "../Commands/CommandList";
+import { Commands } from "../Commands/CommandList.js";
 
 export default (client: Client): void => {
   client.on("interactionCreate", async (interaction: Interaction) => {
@@ -22,7 +22,7 @@ const handleSlashCommand = async (
     return;
   }
 
-  console.log(`User ${interaction.user.id} used command ${command.name}`)
+  console.log(`User ${interaction.user.id} used command ${command.name}`);
 
   command.callback(interaction);
 };

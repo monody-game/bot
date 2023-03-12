@@ -1,8 +1,8 @@
 import { Client, GatewayIntentBits } from "discord.js";
-import "./bootstrap";
-import EventHandler from "./Events/EventHandler";
+import "./bootstrap.js";
+import EventHandler from "./Events/EventHandler.js";
 
-console.log("Starting ...");
+console.log(`Starting bot in ${process.env.NODE_ENV} mode ...`);
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],

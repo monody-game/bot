@@ -1,13 +1,16 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "module": "commonjs",
+    "moduleResolution": "Node16",
+    "lib": ["ES2021"],
+    "module": "Node16",
     "rootDir": "src",
     "outDir": "dist",
     "target": "ES2022",
     "sourceMap": true,
 
     "strict": true,
+    "useUnknownInCatchVariables": false,
     "noEmitOnError": true,
     "noUncheckedIndexedAccess": true,
     "experimentalDecorators": true

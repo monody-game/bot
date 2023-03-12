@@ -1,8 +1,17 @@
+monody:
+  color: 0x0F1127
+  url: "https://monody.fr"
+
 dev:
+  api: "https://localhost/api"
+  guild: "1044329041643192421"
   channels:
-    STATUS: 1055853685231591515
-    PLAY: 1044329043018919972
+    STATUS: "1055853685231591515"
+    PLAY: "1044329043018919972"
+
 prod:
+  api: "https://monody.fr/api"
+  guild: "824249714382864394"
   channels:
-    STATUS: 1084237664833785888
-    PLAY: 825068844979585085
+    STATUS: "1084237664833785888"
+    PLAY: "825068844979585085"

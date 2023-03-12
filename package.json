@@ -8,6 +8,7 @@
     "watch": "tsc-watch --onSuccess \"npm run start\"",
     "format": "prettier --write \"src/\""
   },
+  "type": "module",
   "private": true,
   "author": {
     "name": "moon250",
@@ -22,6 +23,7 @@
   "dependencies": {
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
+    "got": "^12.6.0",
     "yaml": "^2.2.1"
   },
   "optionalDependencies": {
