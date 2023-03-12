@@ -38,6 +38,13 @@
   resolved "https://registry.yarnpkg.com/@discordjs/util/-/util-0.1.0.tgz#e42ca1bf407bc6d9adf252877d1b206e32ba369a"
   integrity sha512-e7d+PaTLVQav6rOc2tojh2y6FE8S7REkqLldq1XF4soCx74XB/DIjbVbVLtBemf0nLW77ntz0v+o5DytKwFNLQ==
 
+"@moon250/yalogger@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/@moon250/yalogger/-/yalogger-0.0.0.tgz#9a791724cd1f7f207a90a360d414ad3d458f2592"
+  integrity sha512-5V1kA4ECzuLwFNAra/S+Lfkm0exmi+FlDD7xlTCrHNR9JTDSTiW7ms27+B5Oylk5SDP6WiVKcYvpZbmZy4dNgA==
+  dependencies:
+    colorette "^2.0.19"
+
 "@sapphire/async-queue@^1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@sapphire/async-queue/-/async-queue-1.5.0.tgz#2f255a3f186635c4fb5a2381e375d3dfbc5312d8"
@@ -126,6 +133,11 @@ cacheable-request@^10.2.8:
     mimic-response "^4.0.0"
     normalize-url "^8.0.0"
     responselike "^3.0.0"
+
+colorette@^2.0.19:
+  version "2.0.19"
+  resolved "https://registry.yarnpkg.com/colorette/-/colorette-2.0.19.tgz#cdf044f47ad41a0f4b56b3a0d5b4e6e1a2d5a798"
+  integrity sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==
 
 cross-spawn@^7.0.3:
   version "7.0.3"

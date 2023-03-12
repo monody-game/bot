@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node dist/bot.js",
     "watch": "tsc-watch --onSuccess \"npm run start\"",
     "format": "prettier --write \"src/\""
   },
@@ -21,6 +21,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
+    "@moon250/yalogger": "^0.0.0",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "got": "^12.6.0",

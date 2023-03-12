@@ -1,5 +1,6 @@
 import { Client, CommandInteraction, Interaction } from "discord.js";
 import { Commands } from "../Commands/CommandList.js";
+import {debug, error} from "@moon250/yalogger";
 
 export default (client: Client): void => {
   client.on("interactionCreate", async (interaction: Interaction) => {
@@ -16,13 +17,14 @@ const handleSlashCommand = async (
   const command = Commands.find((c) => c.name === interaction.commandName);
 
   if (!command) {
+    error(`User ${interaction.user.id} tried to use command ${interaction.commandName}, but it is not defined in command list`)
     await interaction.followUp({
       content: "Oh oh, une erreur est survenue ...",
     });
     return;
   }
 
-  console.log(`User ${interaction.user.id} used command ${command.name}`);
+  debug(`User ${interaction.user.id} used command ${command.name}`);
 
   command.callback(interaction);
 };

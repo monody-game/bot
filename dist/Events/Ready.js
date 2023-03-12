@@ -5,19 +5,19 @@ import { apiFetch } from "../Utils/Fetch.js";
 import { container } from "tsyringe";
 import { WsClient } from "../Utils/WsClient.js";
 import { ServiceStatus } from "../Utils/const.js";
+import { debug, info, success } from "@moon250/yalogger";
 const wsClient = container.resolve(WsClient);
 export default (client) => {
     client.on("ready", async () => {
         if (!client.user || !client.application)
             return;
-        console.info("Registering slash commands ...");
+        info("Registering slash commands ...");
         await client.application.commands.set(Commands);
-        console.info("Done.");
         await writeStatus(client);
         setInterval(async () => {
             await writeStatus(client);
         }, 60000);
-        console.info("Bot is up !");
+        success("Bot is up !");
     });
 };
 /**
@@ -33,7 +33,7 @@ const writeStatus = async function (client) {
     const date = new Date();
     const embed = Embeds.base(`\`\`🤖\`\` Bot : 🟢\n
         \`\`⚙️\`\`️ API : ${emojify(apiStatus.status, apiStatus.latency)}\n
-        \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status, wsStatus.latency)}`, `Status des services (${date.getHours()}:${date.getMinutes()})`);
+        \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status, wsStatus.latency)}`, `Status des services (${date.getUTCHours() + 1}:${date.getMinutes()})`);
     const message = channel.messages.cache.last();
     if (!message?.author.bot) {
         await clearChannel(client, snowflake);
@@ -52,7 +52,7 @@ const clearChannel = async function (client, snowflake) {
     await channel.bulkDelete(fetched);
 };
 const getApiStatus = async function () {
-    console.info("Retrieving API status");
+    debug("Retrieving API status");
     let status = ServiceStatus.Ok;
     let latency = 0;
     try {
@@ -77,7 +77,7 @@ const getApiStatus = async function () {
     };
 };
 const getWsStatus = async function () {
-    console.info("Retrieving WS status");
+    debug("Retrieving WS status");
     const status = await wsClient.init();
     return {
         latency: await wsClient.ping(),

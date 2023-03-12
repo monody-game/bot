@@ -6,6 +6,7 @@ import { apiFetch } from "../Utils/Fetch.js";
 import { container } from "tsyringe";
 import { WsClient } from "../Utils/WsClient.js";
 import { ServiceStatus } from "../Utils/const.js";
+import {debug, info, success} from "@moon250/yalogger";
 
 type StatusResponse = Promise<{
   status: ServiceStatus;
@@ -18,9 +19,8 @@ export default (client: Client): void => {
   client.on("ready", async () => {
     if (!client.user || !client.application) return;
 
-    console.info("Registering slash commands ...");
+    info("Registering slash commands ...");
     await client.application.commands.set(Commands);
-    console.info("Done.");
 
     await writeStatus(client);
 
@@ -28,7 +28,7 @@ export default (client: Client): void => {
       await writeStatus(client);
     }, 60_000);
 
-    console.info("Bot is up !");
+    success("Bot is up !");
   });
 };
 
@@ -50,7 +50,7 @@ const writeStatus = async function (client: Client) {
     `\`\`🤖\`\` Bot : 🟢\n
         \`\`⚙️\`\`️ API : ${emojify(apiStatus.status, apiStatus.latency)}\n
         \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status, wsStatus.latency)}`,
-    `Status des services (${date.getHours()}:${date.getMinutes()})`
+    `Status des services (${date.getUTCHours() + 1}:${date.getMinutes()})`
   );
 
   const message = channel.messages.cache.last();
@@ -76,7 +76,7 @@ const clearChannel = async function (client: Client, snowflake: Snowflake) {
 };
 
 const getApiStatus = async function (): StatusResponse {
-  console.info("Retrieving API status");
+  debug("Retrieving API status");
   let status = ServiceStatus.Ok;
   let latency = 0;
 
@@ -103,7 +103,7 @@ const getApiStatus = async function (): StatusResponse {
 };
 
 const getWsStatus = async function (): StatusResponse {
-  console.info("Retrieving WS status");
+  debug("Retrieving WS status");
   const status = await wsClient.init();
 
   return {
