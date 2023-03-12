@@ -1,1 +1,1 @@
-![Deployment](https://github.com/github/docs/actions/workflows/cd.yml/badge.svg)
+![Deployment](https://github.com/github/docs/actions/workflows/cd.yml)
