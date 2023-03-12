@@ -11,4 +11,11 @@ const client = new Client({
 
 EventHandler(client);
 
-client.login(process.env.BOT_TOKEN);
+await client.login(process.env.BOT_TOKEN);
+
+client.user?.setPresence({
+  status: "idle",
+  activities: [
+    { name: `la version ${process.env.APP_VERSION}`, type: 2 }
+  ]
+})
