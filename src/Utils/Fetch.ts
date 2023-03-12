@@ -8,6 +8,7 @@ type FetchResponse = {
   json: object;
   raw: string;
   status: number;
+  latency: number;
 };
 
 const agent = new https.Agent({
@@ -20,6 +21,7 @@ export async function apiFetch(
   params: object | undefined = {}
 ): Promise<FetchResponse> {
   let body = undefined;
+  let latency = 0;
 
   if (method !== "GET") {
     body = JSON.stringify(body);
@@ -36,10 +38,15 @@ export async function apiFetch(
     },
   });
 
+  if (res.timings.end) {
+    latency = res.timings.end - res.timings.start;
+  }
+
   return {
     ok: res.ok,
     json: JSON.parse(res.body),
     raw: res.body,
     status: res.statusCode,
+    latency,
   };
 }

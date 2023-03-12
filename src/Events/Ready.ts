@@ -29,15 +29,15 @@ const writeStatus = async function (client: Client) {
 
   await clearChannel(client, snowflake);
 
-  const status = await getApiStatus();
+  const { status, latency } = await getApiStatus();
 
   const channel = client.channels.cache.get(snowflake) as TextChannel;
 
   await channel.send({
     embeds: [
       Embeds.base(
-        `🤖 Bot : 🟢\n
-        ⚙️️ API : ${emojify(status)}`
+        `\`\`🤖\`\` Bot : 🟢\n
+        \`\`⚙️\`\`️ API : ${emojify(status)} (${latency}ms)`
       ),
     ],
   });
@@ -49,12 +49,17 @@ const clearChannel = async function (client: Client, snowflake: Snowflake) {
   await channel.bulkDelete(fetched);
 };
 
-const getApiStatus = async function (): Promise<ServiceStatus> {
+const getApiStatus = async function (): Promise<{
+  status: ServiceStatus;
+  latency: number;
+}> {
   console.log("Retrieving API status");
   let status = ServiceStatus.Ok;
+  let latency = 0;
 
   try {
-    await apiFetch("/ping");
+    const res = await apiFetch("/ping");
+    latency = res.latency;
   } catch (e) {
     switch (e.code) {
       case "ERR_NON_2XX_3XX_RESPONSE":
@@ -68,7 +73,10 @@ const getApiStatus = async function (): Promise<ServiceStatus> {
     }
   }
 
-  return status;
+  return {
+    status,
+    latency,
+  };
 };
 
 const emojify = (status: ServiceStatus): string => {
