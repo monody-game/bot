@@ -6,9 +6,9 @@ export const ProfileCommand = {
     name: "profil",
     description: "Affiche votre profil Monody",
     async callback(interaction) {
-        await interaction.deferReply({ ephemeral: true });
+        await interaction.deferReply();
         let user = {
-            id: ''
+            id: "",
         };
         try {
             const userRequest = await apiFetch(`/user/discord/${interaction.user.id}`);
@@ -16,12 +16,16 @@ export const ProfileCommand = {
             await apiFetch(`/user/discord/${interaction.user.id}/share/light`);
         }
         catch (e) {
+            await interaction.editReply({
+                content: 'Une erreur est survenue ... Avez-vous connecté votre compte Discord à Monody ?'
+            });
             error(e.toString());
+            return;
         }
         await interaction.editReply({
             embeds: [
-                Embeds.image(config.api.replace('api', 'assets') + `/profiles/${user.id}.png`)
-            ]
+                Embeds.image(config.api.replace("api", "assets") + `/profiles/${user.id}.png`),
+            ],
         });
     },
 };
