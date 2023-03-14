@@ -1,6 +1,12 @@
 monody:
-  color: 0x0F1127
   url: "https://monody.fr"
+
+colors:
+  monody: 0x0F1127
+  error: 0xFC0000
+  warn: 0xF6970A
+  info: 0x009EC0
+  success: 0x46B800
 
 dev:
   api: "https://localhost/api"

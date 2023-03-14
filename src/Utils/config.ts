@@ -12,9 +12,15 @@ type Config = {
   prod: EnvConfigKey;
   dev: EnvConfigKey;
   monody: {
-    color: number;
     url: string;
   };
+  colors: {
+    monody: number
+    success: number
+    info: number
+    warn: number
+    error: number
+  }
 };
 
 type EnvConfigKey = {
@@ -32,10 +38,11 @@ info("Loading configuration");
 const file: Config = parse(
   fs.readFileSync(path.join(__dirname, "../../config.yml"), "utf-8")
 );
-let config = file.dev;
+
+let config: EnvConfigKey = file.dev;
 
 if (process.env.NODE_ENV === "production") {
   config = file.prod;
 }
 
-export default { ...config, ...file.monody };
+export default { ...config, ...file };

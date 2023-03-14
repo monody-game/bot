@@ -11,5 +11,5 @@ let config = file.dev;
 if (process.env.NODE_ENV === "production") {
     config = file.prod;
 }
-export default { ...config, ...file.monody };
+export default { ...config, ...file };
 //# sourceMappingURL=config.js.map
