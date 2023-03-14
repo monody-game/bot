@@ -1,1 +1,1 @@
-![Deployment](https://github.com/monody-game/bot/actions/workflows/cd.yml)
+![Deployment](https://github.com/monody-game/bot/actions/workflows/cd.yml/badge.svg)

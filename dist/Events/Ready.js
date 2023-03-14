@@ -33,7 +33,7 @@ const writeStatus = async function (client) {
     const date = new Date();
     const embed = Embeds.base(`\`\`🤖\`\` Bot : 🟢\n
         \`\`⚙️\`\`️ API : ${emojify(apiStatus.status, apiStatus.latency)}\n
-        \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status, wsStatus.latency)}`, `Status des services (${date.getUTCHours() + 1}:${date.getMinutes()})`);
+        \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status, wsStatus.latency)}`, `Status des services (${("0" + (date.getUTCHours() + 1)).slice(-2)}:${("0" + date.getMinutes()).slice(-2)})`);
     const message = channel.messages.cache.last();
     if (!message?.author.bot) {
         await clearChannel(client, snowflake);
