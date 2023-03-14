@@ -6,7 +6,7 @@ import { apiFetch } from "../Utils/Fetch.js";
 import { container } from "tsyringe";
 import { WsClient } from "../Utils/WsClient.js";
 import { ServiceStatus } from "../Utils/const.js";
-import {debug, info, success} from "@moon250/yalogger";
+import { debug, info, success } from "@moon250/yalogger";
 
 type StatusResponse = Promise<{
   status: ServiceStatus;
@@ -50,9 +50,7 @@ const writeStatus = async function (client: Client) {
     `\`\`🤖\`\` Bot : 🟢\n
         \`\`⚙️\`\`️ API : ${emojify(apiStatus.status, apiStatus.latency)}\n
         \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status, wsStatus.latency)}`,
-    `Status des services (${(
-      "0" + (date.getUTCHours() + 1)
-    ).slice(-2)}:${(
+    `Status des services (${("0" + (date.getUTCHours() + 1)).slice(-2)}:${(
       "0" + date.getMinutes()
     ).slice(-2)})`
   );

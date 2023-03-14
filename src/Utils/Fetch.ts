@@ -5,7 +5,7 @@ import got from "got";
 type HttpMethod = "GET" | "HEAD" | "POST" | "PUT" | "PATCH" | "DELETE";
 type FetchResponse = {
   ok: boolean;
-  json: object;
+  json: { [index: number | string]: any };
   raw: string;
   status: number;
   latency: number;
@@ -35,6 +35,9 @@ export async function apiFetch(
     body,
     agent: {
       https: agent,
+    },
+    headers: {
+      "X-NETWORK-KEY": process.env.APP_PRIVATE_NETWORK_KEY,
     },
   });
 

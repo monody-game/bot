@@ -10,8 +10,6 @@ EventHandler(client);
 await client.login(process.env.BOT_TOKEN);
 client.user?.setPresence({
     status: "idle",
-    activities: [
-        { name: `la version ${process.env.APP_VERSION}`, type: 2 }
-    ]
+    activities: [{ name: `la version ${process.env.APP_VERSION}`, type: 2 }],
 });
 //# sourceMappingURL=bot.js.map

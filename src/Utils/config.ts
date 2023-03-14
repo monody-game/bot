@@ -3,7 +3,7 @@ import { parse } from "yaml";
 import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
-import {info} from "@moon250/yalogger";
+import { info } from "@moon250/yalogger";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,7 +27,7 @@ type EnvConfigKey = {
   ws: string;
 };
 
-info("Loading configuration")
+info("Loading configuration");
 
 const file: Config = parse(
   fs.readFileSync(path.join(__dirname, "../../config.yml"), "utf-8")

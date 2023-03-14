@@ -19,6 +19,9 @@ export async function apiFetch(endpoint, method = "GET", params = {}) {
         agent: {
             https: agent,
         },
+        headers: {
+            "X-NETWORK-KEY": process.env.APP_PRIVATE_NETWORK_KEY
+        }
     });
     if (res.timings.end) {
         latency = res.timings.end - res.timings.start;

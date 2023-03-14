@@ -7,8 +7,18 @@ export class Embeds {
             .setTitle(title)
             .setDescription(content)
             .setFooter({
-            text: `Monody ${new Date().getFullYear()} - Tous droits réservés`,
+            text: this.getFooter(),
         });
+    }
+    static image(url, title = "Monody") {
+        return new EmbedBuilder()
+            .setColor(config.color)
+            .setTitle(title)
+            .setImage(url)
+            .setFooter({ text: this.getFooter() });
+    }
+    static getFooter() {
+        return `Monody ${new Date().getFullYear()} - Tous droits réservés`;
     }
 }
 //# sourceMappingURL=Embeds.js.map

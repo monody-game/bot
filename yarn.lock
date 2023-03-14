@@ -46,10 +46,10 @@
   resolved "https://registry.yarnpkg.com/@discordjs/util/-/util-0.2.0.tgz#91b590dae3934ffa5fe34530afc5212c569d6751"
   integrity sha512-/8qNbebFzLWKOOg+UV+RB8itp4SmU5jw0tBUD3ifElW6rYNOj1Ku5JaSW7lLl/WgjjxF01l/1uQPCzkwr110vg==
 
-"@moon250/yalogger@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@moon250/yalogger/-/yalogger-0.0.2.tgz#3a69f558eb97f74292a3c5b78522c4a817f36a42"
-  integrity sha512-l6AVDcLFqcrBObwkXCbKj1YvP9C0Whh/MA44G7SmKT6zgQLaIi361nih/e04l6iBiV1SF8JYB6F8UyAXFTpDFw==
+"@moon250/yalogger@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@moon250/yalogger/-/yalogger-0.1.0.tgz#201413c8229d345963a08e0cb78cec29ec5ea7be"
+  integrity sha512-53WKZCA8LEQNrsbj3HSFMU5OfHYME8J+v4oXuzFfzeET3SjAEWTo4mG5/WsuAe93dEX1rSBkud+Rj4MQiy17IQ==
   dependencies:
     colorette "^2.0.19"
 

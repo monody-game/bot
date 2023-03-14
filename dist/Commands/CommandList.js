@@ -1,3 +1,4 @@
 import { PingCommand } from "./PingCommand.js";
-export const Commands = [PingCommand];
+import { ProfileCommand } from "./ProfileCommand.js";
+export const Commands = [PingCommand, ProfileCommand];
 //# sourceMappingURL=CommandList.js.map
