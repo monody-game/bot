@@ -12,7 +12,7 @@ export const ProfileCommand: Command = {
   name: "profil",
   description: "Affiche votre profil Monody",
   async callback(interaction) {
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply();
 
     let user: User = {
       id: "",
@@ -25,7 +25,12 @@ export const ProfileCommand: Command = {
       user = userRequest.json[0];
       await apiFetch(`/user/discord/${interaction.user.id}/share/light`);
     } catch (e) {
+      await interaction.editReply({
+        content: 'Une erreur est survenue ... Avez-vous connecté votre compte Discord à Monody ?'
+      })
+
       error(e.toString());
+      return;
     }
 
     await interaction.editReply({
