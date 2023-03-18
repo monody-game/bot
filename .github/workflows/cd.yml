@@ -21,7 +21,7 @@ jobs:
         run: yarn
 
       - name: ⚙️ Build ts code
-        run: yarn tsbuild
+        run: yarn build
 
       - name: ⬇️ Commit and push changes
         continue-on-error: true
