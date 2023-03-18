@@ -55,7 +55,8 @@ const writeStatus = async function (client: Client) {
     ).slice(-2)})`
   );
 
-  const message = channel.messages.cache.last();
+  const fetched = await channel.messages.fetch({ limit: 1 });
+  const message = fetched.first()
 
   if (!message?.author.bot) {
     await clearChannel(client, snowflake);
