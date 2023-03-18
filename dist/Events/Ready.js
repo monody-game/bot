@@ -2,11 +2,10 @@ import { Commands } from "../Commands/CommandList.js";
 import config from "../Utils/config.js";
 import { Embeds } from "../Utils/Embeds.js";
 import { apiFetch } from "../Utils/Fetch.js";
-import { container } from "tsyringe";
 import { WsClient } from "../Utils/WsClient.js";
 import { ServiceStatus } from "../Utils/const.js";
 import { debug, info, success } from "@moon250/yalogger";
-const wsClient = container.resolve(WsClient);
+const wsClient = new WsClient;
 export default (client) => {
     client.on("ready", async () => {
         if (!client.user || !client.application)

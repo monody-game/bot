@@ -7,7 +7,11 @@ import { ServiceStatus } from "./const.js";
 export class WsClient {
   public connection?: Socket;
 
-  init(): Promise<ServiceStatus> {
+  constructor() {
+    this.init()
+  }
+
+  public init(): Promise<ServiceStatus> {
     this.connection = io(config.ws, {
       rejectUnauthorized: false,
       retries: 0,
@@ -26,7 +30,7 @@ export class WsClient {
     });
   }
 
-  drop(): void {
+  public drop(): void {
     this.connection?.disconnect();
   }
 
