@@ -25,6 +25,7 @@
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "got": "^12.6.0",
+    "redis": "^4.6.5",
     "reflect-metadata": "^0.1.13",
     "socket.io-client": "^4.6.1",
     "tsyringe": "^4.7.0",

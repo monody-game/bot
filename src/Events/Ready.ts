@@ -5,7 +5,6 @@ import { Embeds } from "../Utils/Embeds.js";
 import { apiFetch } from "../Utils/Fetch.js";
 import { WsClient } from "../Utils/WsClient.js";
 import { ServiceStatus } from "../Utils/const.js";
-import { container } from "tsyringe";
 import { debug, info, success } from "@moon250/yalogger";
 
 type StatusResponse = Promise<{
@@ -50,9 +49,7 @@ const writeStatus = async function (client: Client) {
     `\`\`🤖\`\` Bot : 🟢\n
         \`\`⚙️\`\`️ API : ${emojify(apiStatus.status, apiStatus.latency)}\n
         \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status, wsStatus.latency)}`,
-    `État des services (${("0" + (date.getUTCHours() + 1)).slice(-2)}:${(
-      "0" + date.getMinutes()
-    ).slice(-2)})`
+    `État des services (${("0" + (date.getUTCHours() + 1)).slice(-2)}:${("0" + date.getMinutes()).slice(-2)})`
   );
 
   const fetched = await channel.messages.fetch({ limit: 1 });

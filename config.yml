@@ -9,8 +9,8 @@ colors:
   success: 0x46B800
 
 dev:
-  api: "https://localhost/api"
-  ws: "https://localhost:6001"
+  api: "https://web/api"
+  ws: "https://websockets:6001"
   guild: "1044329041643192421"
   channels:
     STATUS: "1055853685231591515"
