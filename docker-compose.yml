@@ -1,0 +1,15 @@
+services:
+  bot:
+    restart: unless-stopped
+    build:
+      context: .
+    volumes:
+      - .:/var/www:delegated
+    networks:
+      - monody
+
+
+networks:
+  monody:
+    name: app_monody
+    external: true
