@@ -23,7 +23,7 @@ export class Embeds {
       .setColor(config.colors.error)
       .setTitle(title)
       .setDescription(content)
-      .setFooter({ text: this.getFooter() })
+      .setFooter({ text: this.getFooter() });
   }
 
   private static getFooter(): string {

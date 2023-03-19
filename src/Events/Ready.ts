@@ -12,7 +12,7 @@ type StatusResponse = Promise<{
   latency: number;
 }>;
 
-const wsClient= new WsClient;
+const wsClient = new WsClient();
 
 export default (client: Client): void => {
   client.on("ready", async () => {
@@ -49,11 +49,13 @@ const writeStatus = async function (client: Client) {
     `\`\`🤖\`\` Bot : 🟢\n
         \`\`⚙️\`\`️ API : ${emojify(apiStatus.status, apiStatus.latency)}\n
         \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status, wsStatus.latency)}`,
-    `État des services (${("0" + (date.getUTCHours() + 1)).slice(-2)}:${("0" + date.getMinutes()).slice(-2)})`
+    `État des services (${("0" + (date.getUTCHours() + 1)).slice(-2)}:${(
+      "0" + date.getMinutes()
+    ).slice(-2)})`
   );
 
   const fetched = await channel.messages.fetch({ limit: 1 });
-  const message = fetched.first()
+  const message = fetched.first();
 
   if (!message?.author.bot) {
     await clearChannel(client, snowflake);

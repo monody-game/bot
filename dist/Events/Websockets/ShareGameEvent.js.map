@@ -1,1 +1,1 @@
-{"version":3,"file":"ShareGameEvent.js","sourceRoot":"","sources":["../../../src/Events/Websockets/ShareGameEvent.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,GAAG,EAAC,MAAM,mBAAmB,CAAC;AAEtC,eAAe;IACb,KAAK,EAAE,YAAY;IACnB,QAAQ;QACN,GAAG,CAAC,0CAA0C,CAAC,CAAA;IACjD,CAAC;CACF,CAAA"}
+{"version":3,"file":"ShareGameEvent.js","sourceRoot":"","sources":["../../../src/Events/Websockets/ShareGameEvent.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,MAAM,mBAAmB,CAAC;AAExC,eAAe;IACb,KAAK,EAAE,YAAY;IACnB,QAAQ;QACN,GAAG,CAAC,0CAA0C,CAAC,CAAC;IAClD,CAAC;CACF,CAAC"}

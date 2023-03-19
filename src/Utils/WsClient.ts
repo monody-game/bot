@@ -8,7 +8,7 @@ export class WsClient {
   public connection?: Socket;
 
   constructor() {
-    this.init()
+    this.init();
   }
 
   public init(): Promise<ServiceStatus> {

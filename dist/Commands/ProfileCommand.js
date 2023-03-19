@@ -17,7 +17,9 @@ export const ProfileCommand = {
         }
         catch (e) {
             await interaction.editReply({
-                embeds: [Embeds.error('Une erreur est survenue ... Avez-vous connecté votre compte Discord à Monody ?')]
+                embeds: [
+                    Embeds.error("Une erreur est survenue ... Avez-vous connecté votre compte Discord à Monody ?"),
+                ],
             });
             error(e.toString());
             return;

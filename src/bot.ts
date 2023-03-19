@@ -2,7 +2,7 @@ import { Client, GatewayIntentBits } from "discord.js";
 import "./bootstrap.js";
 import EventHandler from "./Events/EventHandler.js";
 import { info } from "@moon250/yalogger";
-import {container} from "tsyringe";
+import { container } from "tsyringe";
 
 info(`Starting bot in ${process.env.NODE_ENV} mode ...`);
 
@@ -11,8 +11,8 @@ const client = new Client({
 });
 
 container.register(Client, {
-  useValue: client
-})
+  useValue: client,
+});
 
 EventHandler(client);
 
@@ -22,4 +22,3 @@ client.user?.setPresence({
   status: "idle",
   activities: [{ name: `la version ${process.env.APP_VERSION}`, type: 2 }],
 });
-

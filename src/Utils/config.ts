@@ -15,12 +15,12 @@ type Config = {
     url: string;
   };
   colors: {
-    monody: number
-    success: number
-    info: number
-    warn: number
-    error: number
-  }
+    monody: number;
+    success: number;
+    info: number;
+    warn: number;
+    error: number;
+  };
 };
 
 type EnvConfigKey = {

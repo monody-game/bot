@@ -5,7 +5,7 @@ import { apiFetch } from "../Utils/Fetch.js";
 import { WsClient } from "../Utils/WsClient.js";
 import { ServiceStatus } from "../Utils/const.js";
 import { debug, info, success } from "@moon250/yalogger";
-const wsClient = new WsClient;
+const wsClient = new WsClient();
 export default (client) => {
     client.on("ready", async () => {
         if (!client.user || !client.application)
