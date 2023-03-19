@@ -11,8 +11,8 @@ type EventPayload = {
     private?: boolean;
     volatile?: boolean;
     payload: object | string;
-    socket: string | null
-    channel: string
+    socket: string | null;
+    channel: string;
   };
   event: string;
   socket: string | null;
@@ -38,4 +38,4 @@ export class RedisSubscriber {
   }
 }
 
-export { EventPayload }
+export { EventPayload };

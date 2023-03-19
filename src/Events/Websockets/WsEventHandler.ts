@@ -1,8 +1,8 @@
 import { readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import {EventPayload, RedisSubscriber} from "../../Redis/RedisSubscriber.js";
-import {Client} from "discord.js";
+import { EventPayload, RedisSubscriber } from "../../Redis/RedisSubscriber.js";
+import { Client } from "discord.js";
 
 type EventListenerCallback = (client: Client, ...data: EventPayload[]) => void;
 
