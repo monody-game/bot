@@ -1,9 +1,10 @@
 import { Client, GatewayIntentBits } from "discord.js";
 import "./bootstrap.js";
 import EventHandler from "./Events/EventHandler.js";
-import { info, log } from "@moon250/yalogger";
+import { info } from "@moon250/yalogger";
+import { container } from "tsyringe";
 
-info(`Starting bot in dev ${process.env.NODE_ENV} mode ...`);
+info(`Starting bot in ${process.env.NODE_ENV} mode ...`);
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],

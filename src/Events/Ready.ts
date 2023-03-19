@@ -3,7 +3,6 @@ import { Commands } from "../Commands/CommandList.js";
 import config from "../Utils/config.js";
 import { Embeds } from "../Utils/Embeds.js";
 import { apiFetch } from "../Utils/Fetch.js";
-import { container } from "tsyringe";
 import { WsClient } from "../Utils/WsClient.js";
 import { ServiceStatus } from "../Utils/const.js";
 import { debug, info, success } from "@moon250/yalogger";
@@ -13,7 +12,7 @@ type StatusResponse = Promise<{
   latency: number;
 }>;
 
-const wsClient = container.resolve(WsClient);
+const wsClient = new WsClient();
 
 export default (client: Client): void => {
   client.on("ready", async () => {
@@ -50,13 +49,11 @@ const writeStatus = async function (client: Client) {
     `\`\`🤖\`\` Bot : 🟢\n
         \`\`⚙️\`\`️ API : ${emojify(apiStatus.status, apiStatus.latency)}\n
         \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status, wsStatus.latency)}`,
-    `État des services (${("0" + (date.getUTCHours() + 1)).slice(-2)}:${(
-      "0" + date.getMinutes()
-    ).slice(-2)})`
+    `État des services (<t:${Math.floor(Date.now() / 1000)}:t>)`
   );
 
   const fetched = await channel.messages.fetch({ limit: 1 });
-  const message = fetched.first()
+  const message = fetched.first();
 
   if (!message?.author.bot) {
     await clearChannel(client, snowflake);

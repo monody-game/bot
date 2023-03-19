@@ -26,8 +26,12 @@ export const ProfileCommand: Command = {
       await apiFetch(`/user/discord/${interaction.user.id}/share/light`);
     } catch (e) {
       await interaction.editReply({
-        embeds: [ Embeds.error('Une erreur est survenue ... Avez-vous connecté votre compte Discord à Monody ?') ]
-      })
+        embeds: [
+          Embeds.error(
+            "Une erreur est survenue ... Avez-vous connecté votre compte Discord à Monody ?"
+          ),
+        ],
+      });
 
       error(e.toString());
       return;
