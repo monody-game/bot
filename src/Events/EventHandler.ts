@@ -10,5 +10,5 @@ export default async (client: Client): Promise<void> => {
   interactionCreate(client);
 
   debug("Handling WS events ...");
-  await handle();
+  await handle(client);
 };

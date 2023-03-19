@@ -11,9 +11,11 @@ type EventPayload = {
     private?: boolean;
     volatile?: boolean;
     payload: object | string;
+    socket: string | null
+    channel: string
   };
   event: string;
-  socket: string;
+  socket: string | null;
 };
 
 export class RedisSubscriber {
@@ -35,3 +37,5 @@ export class RedisSubscriber {
     await this.sub.disconnect();
   }
 }
+
+export { EventPayload }

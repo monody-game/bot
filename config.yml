@@ -11,15 +11,19 @@ colors:
 dev:
   api: "https://web/api"
   ws: "https://websockets:6001"
+  base: "https://localhost"
   guild: "1044329041643192421"
   channels:
     STATUS: "1055853685231591515"
     PLAY: "1044329043018919972"
+    SHARE_GAME: "1087015762557947944"
 
 prod:
   api: "https://monody.fr/api"
   ws: "https://monody.fr"
+  base: "https://monody.fr"
   guild: "824249714382864394"
   channels:
     STATUS: "1084237664833785888"
     PLAY: "825068844979585085"
+    SHARE_GAME: "1087015969903362190"

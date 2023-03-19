@@ -10,10 +10,6 @@ const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
 });
 
-container.register(Client, {
-  useValue: client,
-});
-
 EventHandler(client);
 
 await client.login(process.env.BOT_TOKEN);

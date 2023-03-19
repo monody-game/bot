@@ -26,11 +26,12 @@ type Config = {
 type EnvConfigKey = {
   channels: {
     STATUS: Snowflake;
-    LINK_ACCOUNT: Snowflake;
+    SHARE_GAME: Snowflake;
     PLAY: Snowflake;
   };
   api: string;
   ws: string;
+  base: string;
 };
 
 info("Loading configuration");

@@ -7,6 +7,6 @@ export default async (client) => {
     ready(client);
     interactionCreate(client);
     debug("Handling WS events ...");
-    await handle();
+    await handle(client);
 };
 //# sourceMappingURL=EventHandler.js.map

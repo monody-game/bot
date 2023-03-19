@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { RedisSubscriber } from "../../Redis/RedisSubscriber.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const subscriber = new RedisSubscriber();
-export async function handle() {
+export async function handle(client) {
     const listenerFiles = readdirSync(join(__dirname)).filter((fileName) => fileName.endsWith("Event.js"));
     const listeners = {};
     for (const fileName of listenerFiles) {
@@ -13,7 +13,7 @@ export async function handle() {
         listeners[listener.event] = listener.callback;
     }
     await subscriber.subscribe(async (channel, message) => {
-        listeners[message.event]?.(message);
+        listeners[message.event]?.(client, message);
     });
 }
 //# sourceMappingURL=WsEventHandler.js.map
