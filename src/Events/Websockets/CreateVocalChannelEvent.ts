@@ -1,5 +1,5 @@
-import {Client, ChannelType, PermissionsBitField} from "discord.js";
-import { error, log } from "@moon250/yalogger";
+import {Client, PermissionsBitField, ChannelType} from "discord.js";
+import { error } from "@moon250/yalogger";
 import config from "../../Utils/config.js";
 import { EventPayload } from "../../Redis/RedisSubscriber.js";
 
@@ -23,6 +23,8 @@ export default {
       return;
     }
 
+    const user = await guild.members.fetch(payload.owner.discord_id)
+
     await guild.channels.create({
       name: `Partie de ${payload.owner.username}`,
       type: ChannelType.GuildVoice,
@@ -34,7 +36,7 @@ export default {
           deny: [PermissionsBitField.Flags.Connect, PermissionsBitField.Flags.ViewChannel]
         },
         {
-          id: payload.owner.discord_id,
+          id: user,
           allow: [PermissionsBitField.Flags.Connect, PermissionsBitField.Flags.ViewChannel]
         }
       ]
