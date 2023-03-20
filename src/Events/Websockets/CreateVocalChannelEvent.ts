@@ -6,26 +6,28 @@ import { client as redisClient } from "../../Redis/Connection.js";
 
 type Payload = {
   owner: {
-    username: string
-    discord_id: string
-  }
-  game_id: string
-  size: number
-}
+    username: string;
+    discord_id: string;
+  };
+  game_id: string;
+  size: number;
+};
 
 export default {
   event: "game.vocal.create",
   async callback(client: Client, event: EventPayload) {
-    const guild = client.guilds.cache.get(config.guild)
-    const payload = event.data.payload as Payload
+    const guild = client.guilds.cache.get(config.guild);
+    const payload = event.data.payload as Payload;
 
-    if(!guild) {
-      error(`Guild ${config.guild} not found`)
+    if (!guild) {
+      error(`Guild ${config.guild} not found`);
       return;
     }
 
-    const user = await guild.members.fetch(payload.owner.discord_id)
-    const game = JSON.parse(await redisClient.get(`game:${payload.game_id}`) ?? "{}" as string)
+    const user = await guild.members.fetch(payload.owner.discord_id);
+    const game = JSON.parse(
+      (await redisClient.get(`game:${payload.game_id}`)) ?? ("{}" as string)
+    );
 
     const channel = await guild.channels.create({
       name: `Partie de ${payload.owner.username}`,
@@ -35,26 +37,34 @@ export default {
       permissionOverwrites: [
         {
           id: guild.id,
-          deny: [PermissionsBitField.Flags.Connect, PermissionsBitField.Flags.ViewChannel]
+          deny: [
+            PermissionsBitField.Flags.Connect,
+            PermissionsBitField.Flags.ViewChannel,
+          ],
         },
         {
           id: user,
-          allow: [PermissionsBitField.Flags.Connect, PermissionsBitField.Flags.ViewChannel]
-        }
-      ]
-    })
+          allow: [
+            PermissionsBitField.Flags.Connect,
+            PermissionsBitField.Flags.ViewChannel,
+          ],
+        },
+      ],
+    });
 
     game.discord = {
       guild: config.guild,
-      voice_channel: channel.id
-    }
+      voice_channel: channel.id,
+    };
 
     await redisClient.set(
       `game:${payload.game_id}`,
       JSON.stringify({
         ...game,
-        ...(JSON.parse(await redisClient.get(`game:${payload.game_id}`) ?? "{}" as string))
+        ...JSON.parse(
+          (await redisClient.get(`game:${payload.game_id}`)) ?? ("{}" as string)
+        ),
       })
-    )
+    );
   },
 };

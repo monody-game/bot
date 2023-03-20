@@ -3,7 +3,7 @@ import config from "../../Utils/config.js";
 import { client as redisClient } from "../../Redis/Connection.js";
 
 export default {
-  event: "game.share.clear",
+  event: "game.invitations.clear",
   async callback(client: Client) {
     await clearSharedGame(client);
   },

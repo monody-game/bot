@@ -12,7 +12,7 @@ export default {
             return;
         }
         const user = await guild.members.fetch(payload.owner.discord_id);
-        const game = JSON.parse(await redisClient.get(`game:${payload.game_id}`) ?? "{}");
+        const game = JSON.parse((await redisClient.get(`game:${payload.game_id}`)) ?? "{}");
         const channel = await guild.channels.create({
             name: `Partie de ${payload.owner.username}`,
             type: ChannelType.GuildVoice,
@@ -21,21 +21,27 @@ export default {
             permissionOverwrites: [
                 {
                     id: guild.id,
-                    deny: [PermissionsBitField.Flags.Connect, PermissionsBitField.Flags.ViewChannel]
+                    deny: [
+                        PermissionsBitField.Flags.Connect,
+                        PermissionsBitField.Flags.ViewChannel,
+                    ],
                 },
                 {
                     id: user,
-                    allow: [PermissionsBitField.Flags.Connect, PermissionsBitField.Flags.ViewChannel]
-                }
-            ]
+                    allow: [
+                        PermissionsBitField.Flags.Connect,
+                        PermissionsBitField.Flags.ViewChannel,
+                    ],
+                },
+            ],
         });
         game.discord = {
             guild: config.guild,
-            voice_channel: channel.id
+            voice_channel: channel.id,
         };
         await redisClient.set(`game:${payload.game_id}`, JSON.stringify({
             ...game,
-            ...(JSON.parse(await redisClient.get(`game:${payload.game_id}`) ?? "{}"))
+            ...JSON.parse((await redisClient.get(`game:${payload.game_id}`)) ?? "{}"),
         }));
     },
 };
