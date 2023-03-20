@@ -1,6 +1,7 @@
 import { PermissionsBitField, ChannelType } from "discord.js";
 import { error } from "@moon250/yalogger";
 import config from "../../Utils/config.js";
+import { client as redisClient } from "../../Redis/Connection.js";
 export default {
     event: "game.vocal.create",
     async callback(client, event) {
@@ -11,7 +12,8 @@ export default {
             return;
         }
         const user = await guild.members.fetch(payload.owner.discord_id);
-        await guild.channels.create({
+        const game = JSON.parse(await redisClient.get(`game:${payload.game_id}`) ?? "{}");
+        const channel = await guild.channels.create({
             name: `Partie de ${payload.owner.username}`,
             type: ChannelType.GuildVoice,
             parent: config.channels.GAME_CATEGORY,
@@ -27,5 +29,13 @@ export default {
                 }
             ]
         });
+        game.discord = {
+            guild: config.guild,
+            voice_channel: channel.id
+        };
+        await redisClient.set(`game:${payload.game_id}`, JSON.stringify({
+            ...game,
+            ...(JSON.parse(await redisClient.get(`game:${payload.game_id}`) ?? "{}"))
+        }));
     },
 };
