@@ -4,7 +4,11 @@ import EventHandler from "./Events/EventHandler.js";
 import { info } from "@moon250/yalogger";
 info(`Starting bot in ${process.env.NODE_ENV} mode ...`);
 const client = new Client({
-    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildVoiceStates,
+    ],
 });
 EventHandler(client);
 await client.login(process.env.BOT_TOKEN);

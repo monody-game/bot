@@ -8,14 +8,14 @@ export async function apiFetch(endpoint, method = "GET", params = {}) {
     let body = undefined;
     let latency = 0;
     if (method !== "GET") {
-        body = JSON.stringify(body);
+        body = params;
     }
     const res = await got(config.api + endpoint, {
         retry: {
             limit: 0,
         },
         method,
-        body,
+        json: body,
         agent: {
             https: agent,
         },
