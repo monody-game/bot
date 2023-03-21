@@ -1,17 +1,16 @@
 import { Client, Snowflake, VoiceChannel } from "discord.js";
 import { EventPayload } from "../../Redis/RedisSubscriber.js";
 import { client as redis } from "../../Redis/Connection.js";
-import { debug } from "@moon250/yalogger";
 
-type ClearVocalChannelPayload = {
+type ClearVoiceChannelPayload = {
   game_id: string;
   channel_id: Snowflake;
 };
 
 export default {
-  event: "game.vocal.clear",
+  event: "game.voice.clear",
   async callback(client: Client, event: EventPayload) {
-    const payload = event.data.payload as ClearVocalChannelPayload;
+    const payload = event.data.payload as ClearVoiceChannelPayload;
     const channel = (await client.channels.fetch(
       payload.channel_id
     )) as VoiceChannel;

@@ -3,7 +3,7 @@ import { error } from "@moon250/yalogger";
 import config from "../../Utils/config.js";
 import { client as redisClient } from "../../Redis/Connection.js";
 export default {
-    event: "game.vocal.create",
+    event: "game.voice.create",
     async callback(client, event) {
         const guild = client.guilds.cache.get(config.guild);
         const payload = event.data.payload;

@@ -1,6 +1,6 @@
 import { client as redis } from "../../Redis/Connection.js";
 export default {
-    event: "game.vocal.clear",
+    event: "game.voice.clear",
     async callback(client, event) {
         const payload = event.data.payload;
         const channel = (await client.channels.fetch(payload.channel_id));

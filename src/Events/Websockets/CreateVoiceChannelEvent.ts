@@ -14,7 +14,7 @@ type Payload = {
 };
 
 export default {
-  event: "game.vocal.create",
+  event: "game.voice.create",
   async callback(client: Client, event: EventPayload) {
     const guild = client.guilds.cache.get(config.guild);
     const payload = event.data.payload as Payload;
