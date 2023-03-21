@@ -9,7 +9,10 @@ export default (client: Client) => {
     );
 
     if (oldState.channelId === newState.channelId) return;
-    if (newState.channelId === null) return;
+
+    if (oldState.channelId === null && newState.channelId !== null) {
+      await newState.setMute(false);
+    }
 
     if (
       newState.channelId &&

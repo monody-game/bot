@@ -5,8 +5,9 @@ export default (client) => {
         const channelList = JSON.parse((await redis.get("bot:game:channels")) ?? "{}");
         if (oldState.channelId === newState.channelId)
             return;
-        if (newState.channelId === null)
-            return;
+        if (oldState.channelId === null && newState.channelId !== null) {
+            await newState.setMute(false);
+        }
         if (newState.channelId &&
             Object.values(channelList).includes(newState.channelId)) {
             await apiFetch("/game/vocal/joined", "POST", {

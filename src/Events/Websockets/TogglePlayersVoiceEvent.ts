@@ -33,6 +33,9 @@ export default {
     const discordData = JSON.parse(
       (await redisClient.get(`game:${payload.game_id}:discord`)) ?? "{}"
     );
+    const gameData = JSON.parse(
+      (await redisClient.get(`game:${payload.game_id}`)) as string
+    );
 
     const voiceChannel = (await guild.channels.cache.get(
       channelId
@@ -48,6 +51,11 @@ export default {
     }
 
     for (const member of voiceChannel.members.values()) {
+      if (gameData.dead_users.includes(discordData.members[member.id])) {
+        await member.voice.setMute(true);
+        continue;
+      }
+
       await member.voice.setMute(voiceState);
     }
 
