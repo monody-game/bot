@@ -8,6 +8,9 @@ export default (client: Client) => {
       (await redis.get("bot:game:channels")) ?? "{}"
     );
 
+    if (oldState.channelId === newState.channelId) return;
+    if (newState.channelId === null) return;
+
     if (
       newState.channelId &&
       Object.values(channelList).includes(newState.channelId)
