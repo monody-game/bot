@@ -11,4 +11,3 @@ export const PingCommand = {
         await interaction.editReply(`🏓 Pong in ${diff}ms !`);
     },
 };
-//# sourceMappingURL=PingCommand.js.map

@@ -19,4 +19,3 @@ const handleSlashCommand = async (client, interaction) => {
     debug(`User ${interaction.user.id} used command ${command.name}`);
     command.callback(interaction);
 };
-//# sourceMappingURL=InteractionCreate.js.map

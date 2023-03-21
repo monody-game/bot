@@ -7,15 +7,11 @@
     "rootDir": "src",
     "outDir": "dist",
     "target": "ES2022",
-    "sourceMap": true,
 
     "strict": true,
     "useUnknownInCatchVariables": false,
     "noEmitOnError": true,
     "noUncheckedIndexedAccess": true,
-
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
   },
   "include": ["src/**/*"],
   "exclude": [

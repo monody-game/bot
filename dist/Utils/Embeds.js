@@ -26,4 +26,3 @@ export class Embeds {
         return `Monody ${new Date().getFullYear()} - Tous droits réservés`;
     }
 }
-//# sourceMappingURL=Embeds.js.map

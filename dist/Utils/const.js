@@ -4,4 +4,3 @@ export var ServiceStatus;
     ServiceStatus[ServiceStatus["Maintenance"] = 1] = "Maintenance";
     ServiceStatus[ServiceStatus["Down"] = 2] = "Down";
 })(ServiceStatus = ServiceStatus || (ServiceStatus = {}));
-//# sourceMappingURL=const.js.map

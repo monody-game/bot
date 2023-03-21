@@ -1,7 +1,7 @@
 import config from "../../Utils/config.js";
 import { client as redisClient } from "../../Redis/Connection.js";
 export default {
-    event: "game.share.clear",
+    event: "game.invitations.clear",
     async callback(client) {
         await clearSharedGame(client);
     },
@@ -16,4 +16,3 @@ export async function clearSharedGame(client) {
         }
     }
 }
-//# sourceMappingURL=ClearSharedGamesEvent.js.map

@@ -94,4 +94,3 @@ const emojify = (status, latency) => {
             return "🔴 (down)";
     }
 };
-//# sourceMappingURL=Ready.js.map

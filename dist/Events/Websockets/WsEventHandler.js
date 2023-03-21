@@ -13,7 +13,6 @@ export async function handle(client) {
         listeners[listener.event] = listener.callback;
     }
     await subscriber.subscribe(async (channel, message) => {
-        listeners[message.event]?.(client, message);
+        await listeners[message.event]?.(client, message);
     });
 }
-//# sourceMappingURL=WsEventHandler.js.map

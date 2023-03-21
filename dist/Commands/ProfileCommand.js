@@ -31,4 +31,3 @@ export const ProfileCommand = {
         });
     },
 };
-//# sourceMappingURL=ProfileCommand.js.map

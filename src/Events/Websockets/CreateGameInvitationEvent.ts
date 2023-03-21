@@ -1,4 +1,3 @@
-import { log } from "@moon250/yalogger";
 import { EventPayload } from "../../Redis/RedisSubscriber.js";
 import { Embeds } from "../../Utils/Embeds.js";
 import {
@@ -10,7 +9,7 @@ import {
 } from "discord.js";
 import config from "../../Utils/config.js";
 import { client as redisClient } from "../../Redis/Connection.js";
-import { clearSharedGame } from "./ClearSharedGamesEvent.js";
+import { clearSharedGame } from "./ClearGameInvitationsEvent.js";
 
 type GamePayload = {
   id: string;
@@ -28,7 +27,7 @@ type GamePayload = {
 };
 
 export default {
-  event: "game.share",
+  event: "game.invite",
   async callback(client: Client, payload: EventPayload) {
     await clearSharedGame(client);
 

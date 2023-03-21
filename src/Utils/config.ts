@@ -28,7 +28,9 @@ type EnvConfigKey = {
     STATUS: Snowflake;
     SHARE_GAME: Snowflake;
     PLAY: Snowflake;
+    GAME_CATEGORY: Snowflake;
   };
+  guild: Snowflake;
   api: string;
   ws: string;
   base: string;

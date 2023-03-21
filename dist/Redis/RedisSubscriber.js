@@ -15,4 +15,3 @@ export class RedisSubscriber {
         await this.sub.disconnect();
     }
 }
-//# sourceMappingURL=RedisSubscriber.js.map
