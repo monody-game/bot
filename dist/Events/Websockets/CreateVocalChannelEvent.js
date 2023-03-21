@@ -38,7 +38,7 @@ export default {
         await redisClient.set(`game:${payload.game_id}:discord`, JSON.stringify({
             guild: config.guild,
             voice_channel: channel.id,
-            members: []
+            members: [],
         }));
         await redisClient.set("bot:game:channels", JSON.stringify({
             [payload.game_id]: channel.id,
