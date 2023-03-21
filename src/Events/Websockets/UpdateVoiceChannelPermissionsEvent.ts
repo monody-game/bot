@@ -1,4 +1,10 @@
-import {Client, PermissionsBitField, ChannelType, Snowflake, VoiceChannel} from "discord.js";
+import {
+  Client,
+  PermissionsBitField,
+  ChannelType,
+  Snowflake,
+  VoiceChannel,
+} from "discord.js";
 import { error } from "@moon250/yalogger";
 import config from "../../Utils/config.js";
 import { EventPayload } from "../../Redis/RedisSubscriber.js";
@@ -24,10 +30,15 @@ export default {
     const channelList = JSON.parse(
       (await redisClient.get("bot:game:channels")) ?? "{}"
     );
-    const channelId: Snowflake = channelList[payload.game_id]
+    const channelId: Snowflake = channelList[payload.game_id];
 
-    const voiceChannel = await guild.channels.cache.get(channelId) as VoiceChannel
+    const voiceChannel = (await guild.channels.cache.get(
+      channelId
+    )) as VoiceChannel;
 
-    await voiceChannel.permissionOverwrites.edit(user.id, {ViewChannel: true, Connect: true})
+    await voiceChannel.permissionOverwrites.edit(user.id, {
+      ViewChannel: true,
+      Connect: true,
+    });
   },
 };

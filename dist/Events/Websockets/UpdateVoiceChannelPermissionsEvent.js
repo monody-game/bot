@@ -13,7 +13,10 @@ export default {
         const user = await guild.members.fetch(payload.discord_id);
         const channelList = JSON.parse((await redisClient.get("bot:game:channels")) ?? "{}");
         const channelId = channelList[payload.game_id];
-        const voiceChannel = await guild.channels.cache.get(channelId);
-        await voiceChannel.permissionOverwrites.edit(user.id, { ViewChannel: true, Connect: true });
+        const voiceChannel = (await guild.channels.cache.get(channelId));
+        await voiceChannel.permissionOverwrites.edit(user.id, {
+            ViewChannel: true,
+            Connect: true,
+        });
     },
 };

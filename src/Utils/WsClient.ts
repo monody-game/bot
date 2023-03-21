@@ -1,9 +1,7 @@
-import { singleton } from "tsyringe";
 import { io, Socket } from "socket.io-client";
 import config from "./config.js";
 import { ServiceStatus } from "./const.js";
 
-@singleton()
 export class WsClient {
   public connection?: Socket;
 
