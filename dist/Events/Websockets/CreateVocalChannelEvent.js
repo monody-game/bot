@@ -12,7 +12,6 @@ export default {
             return;
         }
         const user = await guild.members.fetch(payload.owner.discord_id);
-        const game = JSON.parse((await redisClient.get(`game:${payload.game_id}`)) ?? "{}");
         const channelList = JSON.parse((await redisClient.get("bot:game:channels")) ?? "{}");
         const channel = await guild.channels.create({
             name: `Partie de ${payload.owner.username}`,
@@ -36,17 +35,14 @@ export default {
                 },
             ],
         });
-        game.discord = {
+        await redisClient.set(`game:${payload.game_id}:discord`, JSON.stringify({
             guild: config.guild,
             voice_channel: channel.id,
-        };
+            members: []
+        }));
         await redisClient.set("bot:game:channels", JSON.stringify({
             [payload.game_id]: channel.id,
             ...channelList,
-        }));
-        await redisClient.set(`game:${payload.game_id}`, JSON.stringify({
-            ...game,
-            ...JSON.parse((await redisClient.get(`game:${payload.game_id}`)) ?? "{}"),
         }));
     },
 };
