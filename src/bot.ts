@@ -1,5 +1,5 @@
+import "./bootstrap.js"
 import { Client, GatewayIntentBits } from "discord.js";
-import "./bootstrap.js";
 import EventHandler from "./Events/EventHandler.js";
 import { info } from "@moon250/yalogger";
 
@@ -13,7 +13,7 @@ const client = new Client({
   ],
 });
 
-EventHandler(client);
+await EventHandler(client);
 
 await client.login(process.env.BOT_TOKEN);
 
