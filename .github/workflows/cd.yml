@@ -31,7 +31,7 @@ jobs:
           
           git add -A
           git commit --amend
-          git push
+          git push origin HEAD:master
 
       - name: 🔢 Extract version name
         shell: bash

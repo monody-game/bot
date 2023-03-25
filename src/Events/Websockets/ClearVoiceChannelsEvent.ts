@@ -11,7 +11,7 @@ export default {
   event: "game.voice.clear",
   async callback(client: Client, event: EventPayload) {
     const payload = event.data.payload as ClearVoiceChannelPayload;
-    const channel = (await client.channels.fetch(
+    const channel = (await client.channels.cache.get(
       payload.channel_id
     )) as VoiceChannel;
 

@@ -32,9 +32,13 @@ export default {
     );
     const channelId: Snowflake = channelList[payload.game_id];
 
-    const voiceChannel = (await guild.channels.cache.get(
-      channelId
-    )) as VoiceChannel;
+    const voiceChannel = (await guild.channels.cache.get(channelId)) as
+      | VoiceChannel
+      | undefined;
+
+    if (!voiceChannel) {
+      return;
+    }
 
     await voiceChannel.permissionOverwrites.edit(user.id, {
       ViewChannel: true,
