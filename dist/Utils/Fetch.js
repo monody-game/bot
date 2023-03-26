@@ -26,11 +26,22 @@ export async function apiFetch(endpoint, method = "GET", params = {}) {
     if (res.timings.end) {
         latency = res.timings.end - res.timings.start;
     }
-    return {
-        ok: res.ok,
-        json: JSON.parse(res.body),
-        raw: res.body,
-        status: res.statusCode,
-        latency,
-    };
+    if (res.statusCode !== 204) {
+        return {
+            ok: res.ok,
+            json: JSON.parse(res.body),
+            raw: res.body,
+            status: res.statusCode,
+            latency,
+        };
+    }
+    else {
+        return {
+            ok: res.ok,
+            json: {},
+            raw: "",
+            status: res.statusCode,
+            latency,
+        };
+    }
 }
