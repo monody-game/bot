@@ -6,6 +6,7 @@ info(`Starting bot in ${process.env.NODE_ENV} mode ...`);
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.GuildVoiceStates,
     ],
