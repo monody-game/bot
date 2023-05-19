@@ -15,17 +15,17 @@
     "email": "mooneupho@gmail.com"
   },
   "devDependencies": {
-    "@types/node": "^18.16.0",
+    "@types/node": "^20.2.1",
     "prettier": "^2.8.8",
-    "tsc-watch": "^6.0.0",
+    "tsc-watch": "^6.0.4",
     "typescript": "^5.0.4"
   },
   "dependencies": {
     "@moon250/yalogger": "^0.1.0",
-    "discord.js": "^14.9.0",
+    "discord.js": "^14.11.0",
     "dotenv": "^16.0.3",
     "got": "^12.6.0",
-    "redis": "^4.6.5",
+    "redis": "^4.6.6",
     "socket.io-client": "^4.6.1",
     "yaml": "^2.2.2"
   },
