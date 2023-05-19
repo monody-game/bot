@@ -45,7 +45,7 @@ export async function apiFetch(
     latency = res.timings.end - res.timings.start;
   }
 
-  if(res.statusCode !== 204) {
+  if (res.statusCode !== 204) {
     return {
       ok: res.ok,
       json: JSON.parse(res.body),

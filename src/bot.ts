@@ -1,4 +1,4 @@
-import "./bootstrap.js"
+import "./bootstrap.js";
 import { Client, GatewayIntentBits } from "discord.js";
 import EventHandler from "./Events/EventHandler.js";
 import { info } from "@moon250/yalogger";

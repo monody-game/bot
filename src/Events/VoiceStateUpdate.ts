@@ -1,7 +1,7 @@
 import { Client } from "discord.js";
 import { client as redis } from "../Redis/Connection.js";
 import { apiFetch } from "../Utils/Fetch.js";
-import {error} from "@moon250/yalogger";
+import { error } from "@moon250/yalogger";
 
 export default (client: Client) => {
   client.on("voiceStateUpdate", async (oldState, newState) => {
@@ -24,7 +24,7 @@ export default (client: Client) => {
           discord_id: newState.id,
         });
       } catch (e) {
-        error(e.toString())
+        error(e.toString());
       }
     }
   });
