@@ -12,7 +12,7 @@ export const ProfileCommand = {
         };
         try {
             const userRequest = await apiFetch(`/user/discord/${interaction.user.id}`);
-            user = userRequest.json[0];
+            user = userRequest.json.data.user;
             await apiFetch(`/user/discord/${interaction.user.id}/share/light`);
         }
         catch (e) {
