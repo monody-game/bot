@@ -2,7 +2,7 @@ import { Embeds } from "../Utils/Embeds.js";
 import { apiFetch } from "../Utils/Fetch.js";
 import { error } from "@moon250/yalogger";
 import config from "../Utils/config.js";
-export const ProfileCommand = {
+export default {
     name: "profil",
     description: "Affiche votre profil Monody",
     async callback(interaction) {

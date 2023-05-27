@@ -5,4 +5,5 @@ import {
 
 export interface Command extends ChatInputApplicationCommandData {
   callback: (interaction: CommandInteraction) => void;
+  autocomplete?: (interaction: CommandInteraction) => void;
 }

@@ -1,6 +1,6 @@
 import { Embeds } from "../Utils/Embeds.js";
 import { apiFetch } from "../Utils/Fetch.js";
-export const VersionCommand = {
+export default {
     name: "version",
     description: "Affiche des informations sur la version du bot",
     async callback(interaction) {

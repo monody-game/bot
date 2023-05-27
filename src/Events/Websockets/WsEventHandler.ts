@@ -3,7 +3,6 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { EventPayload, RedisSubscriber } from "../../Redis/RedisSubscriber.js";
 import { Client } from "discord.js";
-import { debug } from "@moon250/yalogger";
 
 type EventListenerCallback = (client: Client, ...data: EventPayload[]) => void;
 

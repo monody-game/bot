@@ -1,4 +1,4 @@
-export const PingCommand = {
+export default {
     name: "ping",
     description: "🏓 Ping pong !",
     async callback(interaction) {

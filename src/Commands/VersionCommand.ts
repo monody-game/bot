@@ -3,7 +3,7 @@ import { Command } from "./Command.js";
 import { Embeds } from "../Utils/Embeds.js";
 import { apiFetch } from "../Utils/Fetch.js";
 
-export const VersionCommand: Command = {
+export default {
   name: "version",
   description: "Affiche des informations sur la version du bot",
   async callback(interaction: CommandInteraction): Promise<void> {
@@ -19,4 +19,4 @@ export const VersionCommand: Command = {
       ],
     });
   },
-};
+} as Command;

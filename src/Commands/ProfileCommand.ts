@@ -8,7 +8,7 @@ type User = {
   id: "";
 };
 
-export const ProfileCommand: Command = {
+export default {
   name: "profil",
   description: "Affiche votre profil Monody",
   async callback(interaction) {
@@ -45,4 +45,4 @@ export const ProfileCommand: Command = {
       ],
     });
   },
-};
+} as Command;
