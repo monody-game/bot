@@ -38,7 +38,7 @@ export default {
               inline: true,
             }
           )
-          .setThumbnail(config.monody.url + role.image)
+          .setThumbnail(config.monody.url + role.image + "?w=128")
           .setFooter({ text: Embeds.getFooter(), iconURL: Embeds.iconUrl }),
       ],
     });
