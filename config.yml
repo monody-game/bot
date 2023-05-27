@@ -7,6 +7,9 @@ colors:
   warn: 0xF6970A
   info: 0x009EC0
   success: 0x46B800
+  villagers: 0x4c93d6
+  werewolves: 0xa51818
+  loners: 0x468845
 
 dev:
   api: "https://web/api"

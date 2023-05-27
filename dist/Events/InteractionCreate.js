@@ -17,5 +17,5 @@ const handleSlashCommand = async (client, interaction) => {
         return;
     }
     debug(`User ${interaction.user.id} used command ${command.name}`);
-    command.callback(interaction);
+    await command.callback(interaction);
 };

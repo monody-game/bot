@@ -28,5 +28,5 @@ const handleSlashCommand = async (
 
   debug(`User ${interaction.user.id} used command ${command.name}`);
 
-  command.callback(interaction);
+  await command.callback(interaction);
 };

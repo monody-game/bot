@@ -20,6 +20,9 @@ type Config = {
     info: number;
     warn: number;
     error: number;
+    villagers: number;
+    werewolves: number;
+    loners: number;
   };
 };
 
