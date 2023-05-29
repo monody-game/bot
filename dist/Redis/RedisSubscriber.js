@@ -1,4 +1,5 @@
 import { client } from "./Connection.js";
+import { error } from "@moon250/yalogger";
 export class RedisSubscriber {
     sub;
     constructor() {
@@ -7,7 +8,13 @@ export class RedisSubscriber {
     }
     async subscribe(callback) {
         await this.sub.pSubscribe("*", async (message, channel) => {
-            return await callback(channel, JSON.parse(message));
+            try {
+                const event = JSON.parse(message);
+                return await callback(channel, JSON.parse(message));
+            }
+            catch (e) {
+                error(e);
+            }
         });
     }
     async unsubscribe() {

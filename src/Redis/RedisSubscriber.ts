@@ -1,4 +1,5 @@
 import { client } from "./Connection.js";
+import { error } from "@moon250/yalogger";
 
 type EventListenerCallback = (
   channel: string,
@@ -28,7 +29,12 @@ export class RedisSubscriber {
 
   async subscribe(callback: EventListenerCallback) {
     await this.sub.pSubscribe("*", async (message: string, channel: string) => {
-      return await callback(channel, JSON.parse(message));
+      try {
+        const event = JSON.parse(message);
+        return await callback(channel, JSON.parse(message));
+      } catch (e) {
+        error(e);
+      }
     });
   }
 
