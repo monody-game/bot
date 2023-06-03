@@ -2,18 +2,21 @@ import { Embeds } from "../Utils/Embeds.js";
 import { apiFetch } from "../Utils/Fetch.js";
 import { error } from "@moon250/yalogger";
 import config from "../Utils/config.js";
+import { SlashCommandStringOption, } from "discord.js";
 export default {
     name: "profil",
     description: "Affiche votre profil Monody",
     async callback(interaction) {
         await interaction.deferReply();
+        const option = interaction.options.get("theme");
+        const theme = option && option.value ? option.value : "light";
         let user = {
             id: "",
         };
         try {
             const userRequest = await apiFetch(`/user/discord/${interaction.user.id}`);
             user = userRequest.json.data.user;
-            await apiFetch(`/user/discord/${interaction.user.id}/share/light`);
+            await apiFetch(`/user/discord/${interaction.user.id}/share/${theme}`);
         }
         catch (e) {
             await interaction.editReply({
@@ -30,4 +33,11 @@ export default {
             ],
         });
     },
+    options: [
+        new SlashCommandStringOption()
+            .setName("theme")
+            .setDescription("Thème du profil")
+            .setRequired(false)
+            .addChoices({ name: "Clair", value: "light" }, { name: "Sombre", value: "dark" }),
+    ],
 };
