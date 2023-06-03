@@ -19,7 +19,7 @@ export default {
     await interaction.deferReply();
 
     const option = interaction.options.get("theme");
-    const theme = option && option.value ? option.value : "light";
+    const theme = option ? option.value : "light";
 
     let user: User = {
       id: "",
