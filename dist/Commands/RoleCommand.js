@@ -34,7 +34,7 @@ export default {
     options: [
         new SlashCommandIntegerOption()
             .setName("role")
-            .setDescription("test")
+            .setDescription("Le rôle à afficher")
             .setRequired(true)
             .addChoices(...roles),
     ],
