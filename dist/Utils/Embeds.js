@@ -1,6 +1,6 @@
 import { EmbedBuilder } from "discord.js";
 import config from "./config.js";
-class Embeds {
+export class Embeds {
     static iconUrl = config.monody.url + "/images/monody_64.png";
     static base(content, title = "Monody") {
         return new EmbedBuilder()
@@ -27,4 +27,3 @@ class Embeds {
         return `Monody ${new Date().getFullYear()} - Tous droits réservés`;
     }
 }
-export { Embeds };
