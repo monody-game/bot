@@ -26,7 +26,7 @@ export default {
 
     const user = await guild.members.fetch(payload.owner.discord_id);
     const channelList = JSON.parse(
-      (await redisClient.get("bot:game:channels")) ?? "{}"
+      (await redisClient.get("bot:game:channels")) ?? "{}",
     );
 
     const channel = await guild.channels.create({
@@ -58,7 +58,7 @@ export default {
         guild: config.guild,
         voice_channel: channel.id,
         members: [],
-      })
+      }),
     );
 
     await redisClient.set(
@@ -66,7 +66,7 @@ export default {
       JSON.stringify({
         [payload.game_id]: channel.id,
         ...channelList,
-      })
+      }),
     );
   },
 };

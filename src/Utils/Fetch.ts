@@ -18,7 +18,7 @@ const agent = new https.Agent({
 export async function apiFetch(
   endpoint: string,
   method: HttpMethod = "GET",
-  params: object | undefined = {}
+  params: object | undefined = {},
 ): Promise<FetchResponse> {
   let body = undefined;
   let latency = 0;

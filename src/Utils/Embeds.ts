@@ -22,7 +22,7 @@ export class Embeds {
 
   public static error(
     content: string,
-    title: string = "Oh oh ..."
+    title: string = "Oh oh ...",
   ): EmbedBuilder {
     return new EmbedBuilder()
       .setColor(config.colors.error)

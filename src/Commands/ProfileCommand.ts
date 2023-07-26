@@ -27,7 +27,7 @@ export default {
 
     try {
       const userRequest = await apiFetch(
-        `/user/discord/${interaction.user.id}`
+        `/user/discord/${interaction.user.id}`,
       );
       user = userRequest.json.data.user;
       await apiFetch(`/user/discord/${interaction.user.id}/share/${theme}`);
@@ -35,7 +35,7 @@ export default {
       await interaction.editReply({
         embeds: [
           Embeds.error(
-            "Une erreur est survenue ... Avez-vous connecté votre compte Discord à Monody ?"
+            "Une erreur est survenue ... Avez-vous connecté votre compte Discord à Monody ?",
           ),
         ],
       });
@@ -47,7 +47,7 @@ export default {
     await interaction.editReply({
       embeds: [
         Embeds.image(
-          config.api.replace("api", "assets") + `/profiles/${user.id}.png`
+          config.api.replace("api", "assets") + `/profiles/${user.id}.png`,
         ),
       ],
     });
@@ -59,7 +59,7 @@ export default {
       .setRequired(false)
       .addChoices(
         { name: "Clair", value: "light" },
-        { name: "Sombre", value: "dark" }
+        { name: "Sombre", value: "dark" },
       ),
   ],
 } as Command;

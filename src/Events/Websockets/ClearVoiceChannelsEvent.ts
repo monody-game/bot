@@ -12,11 +12,11 @@ export default {
   async callback(client: Client, event: EventPayload) {
     const payload = event.data.payload as ClearVoiceChannelPayload;
     const channel = (await client.channels.cache.get(
-      payload.channel_id
+      payload.channel_id,
     )) as VoiceChannel;
 
     const storedData = JSON.parse(
-      (await redis.get(`bot:game:channels`)) as string
+      (await redis.get(`bot:game:channels`)) as string,
     );
 
     delete storedData[payload.game_id];

@@ -14,7 +14,7 @@ export default {
         Embeds.base(
           `\`\`🤖\`\` Bot : ${process.env.APP_VERSION}\n
           \`\`⚙️\`\`️ API : ${res.json.meta.version}`,
-          "Version"
+          "Version",
         ),
       ],
     });

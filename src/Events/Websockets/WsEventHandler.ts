@@ -18,7 +18,7 @@ const subscriber = new RedisSubscriber();
 
 export async function handle(client: Client) {
   const listenerFiles = readdirSync(join(__dirname)).filter((fileName) =>
-    fileName.endsWith("Event.js")
+    fileName.endsWith("Event.js"),
   );
   const listeners: EventListenerList = {};
 

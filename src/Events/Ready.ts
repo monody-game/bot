@@ -49,7 +49,7 @@ const writeStatus = async function (client: Client) {
     `\`\`🤖\`\` Bot : 🟢\n
         \`\`⚙️\`\`️ API : ${emojify(apiStatus.status, apiStatus.latency)}\n
         \`\`🔗️\`\`️ WS : ${emojify(wsStatus.status, wsStatus.latency)}`,
-    `État des services (<t:${Math.floor(Date.now() / 1000)}:t>)`
+    `État des services (<t:${Math.floor(Date.now() / 1000)}:t>)`,
   );
 
   const fetched = await channel.messages.fetch({ limit: 1 });

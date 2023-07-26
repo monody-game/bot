@@ -33,17 +33,17 @@ export default {
 
     const game = payload.data.payload as GamePayload;
     const channel = client.channels.cache.get(
-      config.channels.SHARE_GAME
+      config.channels.SHARE_GAME,
     ) as TextChannel;
 
     const embed = Embeds.base(
-      `**${game.owner.username}** vous invite à rejoindre sa partie !`
+      `**${game.owner.username}** vous invite à rejoindre sa partie !`,
     );
     const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
       new ButtonBuilder()
         .setLabel("Rejoindre")
         .setURL(`${config.base}/game/${game.id}`)
-        .setStyle(ButtonStyle.Link)
+        .setStyle(ButtonStyle.Link),
     );
 
     const message = await channel.send({
@@ -51,7 +51,7 @@ export default {
       components: [row],
     });
     const shared = JSON.parse(
-      (await redisClient.get("bot:game:shared")) ?? "{}"
+      (await redisClient.get("bot:game:shared")) ?? "{}",
     );
 
     shared[game.id] = message.id;

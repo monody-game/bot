@@ -6,7 +6,7 @@ import { error } from "@moon250/yalogger";
 export default (client: Client) => {
   client.on("voiceStateUpdate", async (oldState, newState) => {
     const channelList = JSON.parse(
-      (await redis.get("bot:game:channels")) ?? "{}"
+      (await redis.get("bot:game:channels")) ?? "{}",
     );
 
     if (oldState.channelId === newState.channelId) return;

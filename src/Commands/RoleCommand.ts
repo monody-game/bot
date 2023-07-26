@@ -11,7 +11,7 @@ const list: string[] = Object.values(response.json.data.roles);
 const roles: APIApplicationCommandOptionChoice<number>[] = list.map(
   (role: string) => {
     return { name: role, value: list.indexOf(role) + 1 };
-  }
+  },
 );
 
 export default {
@@ -36,7 +36,7 @@ export default {
               name: "**Limite par partie**",
               value: role.limit !== -1 ? `${role.limit}` : "Aucune",
               inline: true,
-            }
+            },
           )
           .setThumbnail(config.monody.url + role.image + "?w=128")
           .setFooter({ text: Embeds.getFooter(), iconURL: Embeds.iconUrl }),

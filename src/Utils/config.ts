@@ -42,7 +42,7 @@ type EnvConfigKey = {
 info("Loading configuration");
 
 const file: Config = parse(
-  fs.readFileSync(path.join(__dirname, "../../config.yml"), "utf-8")
+  fs.readFileSync(path.join(__dirname, "../../config.yml"), "utf-8"),
 );
 
 let config: EnvConfigKey = file.dev;

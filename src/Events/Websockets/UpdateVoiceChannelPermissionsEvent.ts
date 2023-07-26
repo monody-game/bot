@@ -28,7 +28,7 @@ export default {
 
     const user = await guild.members.fetch(payload.discord_id);
     const channelList = JSON.parse(
-      (await redisClient.get("bot:game:channels")) ?? "{}"
+      (await redisClient.get("bot:game:channels")) ?? "{}",
     );
     const channelId: Snowflake = channelList[payload.game_id];
 

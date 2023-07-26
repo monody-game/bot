@@ -3,7 +3,7 @@ import { error } from "@moon250/yalogger";
 
 type EventListenerCallback = (
   channel: string,
-  message: EventPayload
+  message: EventPayload,
 ) => Promise<void>;
 
 type EventPayload = {

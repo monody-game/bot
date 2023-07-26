@@ -27,18 +27,18 @@ export default {
     }
 
     const channelList = JSON.parse(
-      (await redisClient.get("bot:game:channels")) ?? "{}"
+      (await redisClient.get("bot:game:channels")) ?? "{}",
     );
     const channelId: Snowflake = channelList[payload.game_id];
     const discordData = JSON.parse(
-      (await redisClient.get(`game:${payload.game_id}:discord`)) ?? "{}"
+      (await redisClient.get(`game:${payload.game_id}:discord`)) ?? "{}",
     );
     const gameData = JSON.parse(
-      (await redisClient.get(`game:${payload.game_id}`)) as string
+      (await redisClient.get(`game:${payload.game_id}`)) as string,
     );
 
     const voiceChannel = (await guild.channels.cache.get(
-      channelId
+      channelId,
     )) as VoiceChannel;
 
     let voiceState = true;
@@ -63,7 +63,7 @@ export default {
 
     await redisClient.set(
       `game:${payload.game_id}:discord`,
-      JSON.stringify(discordData)
+      JSON.stringify(discordData),
     );
   },
 };

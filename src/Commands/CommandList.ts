@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const listenerFiles = readdirSync(join(__dirname)).filter(
-  (fileName) => fileName.endsWith("Command.js") && fileName !== "Command.js"
+  (fileName) => fileName.endsWith("Command.js") && fileName !== "Command.js",
 );
 const Commands: Command[] = [];
 
