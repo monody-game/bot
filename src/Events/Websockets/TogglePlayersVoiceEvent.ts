@@ -13,11 +13,12 @@ import { type } from "os";
 
 type Payload = {
   game_id: string;
+  lock: boolean;
 };
 
 export default {
   event: "game.voice.toggle",
-  async callback(client: Client, event: EventPayload) {
+  callback: async function (client: Client, event: EventPayload) {
     const guild = client.guilds.cache.get(config.guild);
     const payload = event.data.payload as Payload;
 
@@ -37,18 +38,7 @@ export default {
       (await redisClient.get(`game:${payload.game_id}`)) as string,
     );
 
-    const voiceChannel = (await guild.channels.cache.get(
-      channelId,
-    )) as VoiceChannel;
-
-    let voiceState = true;
-
-    if (
-      discordData["voice_state"] &&
-      typeof discordData["voice_state"] === "boolean"
-    ) {
-      voiceState = !discordData["voice_state"];
-    }
+    const voiceChannel = guild.channels.cache.get(channelId) as VoiceChannel;
 
     for (const member of voiceChannel.members.values()) {
       if (gameData.dead_users.includes(discordData.members[member.id])) {
@@ -56,14 +46,7 @@ export default {
         continue;
       }
 
-      await member.voice.setMute(voiceState);
+      await member.voice.setMute(payload.lock);
     }
-
-    discordData["voice_state"] = voiceState;
-
-    await redisClient.set(
-      `game:${payload.game_id}:discord`,
-      JSON.stringify(discordData),
-    );
   },
 };
