@@ -42,7 +42,7 @@ export default {
 
     for (const member of voiceChannel.members.values()) {
       if (gameData.dead_users.includes(discordData.members[member.id])) {
-        await member.voice.setMute(true);
+        await member.voice.setMute(payload.lock);
         continue;
       }
 
