@@ -56,6 +56,6 @@ export default {
 
     shared[game.id] = message.id;
 
-    await redisClient.set("bot:game:shared", JSON.stringify(shared));
+    await redisClient.set("bot:game:shared", shared);
   },
 };

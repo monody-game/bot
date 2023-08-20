@@ -11,17 +11,15 @@ export default {
   event: "game.voice.clear",
   async callback(client: Client, event: EventPayload) {
     const payload = event.data.payload as ClearVoiceChannelPayload;
-    const channel = (await client.channels.cache.get(
+    const channel = client.channels.cache.get(
       payload.channel_id,
-    )) as VoiceChannel;
+    ) as VoiceChannel;
 
-    const storedData = JSON.parse(
-      (await redis.get(`bot:game:channels`)) as string,
-    );
+    const storedData = await redis.get(`bot:game:channels`);
 
     delete storedData[payload.game_id];
 
-    await redis.set(`bot:game:channels`, JSON.stringify(storedData));
+    await redis.set(`bot:game:channels`, storedData);
 
     if (channel) {
       await channel.delete("Game was deleted");

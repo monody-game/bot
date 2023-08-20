@@ -14,9 +14,8 @@ export async function clearSharedGame(client: Client) {
     config.channels.SHARE_GAME,
   ) as TextChannel;
   const messages = await channel.messages.fetch({ limit: 50 });
-  const shared: { [key: string]: Snowflake } = JSON.parse(
-    (await redisClient.get("bot:game:shared")) ?? "{}",
-  );
+  const shared: { [key: string]: Snowflake } =
+    await redisClient.get("bot:game:shared");
 
   for (const message of messages.values()) {
     if (!Object.values(shared).includes(message.id)) {

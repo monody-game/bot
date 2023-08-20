@@ -1,4 +1,4 @@
-import { client } from "./Connection.js";
+import { connection } from "./Connection.js";
 import { error } from "@moon250/yalogger";
 
 type EventListenerCallback = (
@@ -20,10 +20,10 @@ type EventPayload = {
 };
 
 export class RedisSubscriber {
-  private sub: typeof client;
+  private sub: typeof connection;
 
   constructor() {
-    this.sub = client.duplicate();
+    this.sub = connection.duplicate();
     this.sub.connect();
   }
 
