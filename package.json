@@ -15,7 +15,7 @@
     "email": "mooneupho@gmail.com"
   },
   "devDependencies": {
-    "@types/node": "^20.8.5",
+    "@types/node": "^20.8.10",
     "prettier": "^3.0.3",
     "tsc-watch": "^6.0.4",
     "typescript": "^5.2.2"
@@ -27,11 +27,11 @@
     "got": "^13.0.0",
     "redis": "^4.6.10",
     "socket.io-client": "^4.7.2",
-    "yaml": "^2.3.2"
+    "yaml": "^2.3.4"
   },
   "optionalDependencies": {
-    "bufferutil": "^4.0.7",
+    "bufferutil": "^4.0.8",
     "utf-8-validate": "^6.0.3",
-    "zlib-sync": "^0.1.8"
+    "zlib-sync": "^0.1.9"
   }
 }
