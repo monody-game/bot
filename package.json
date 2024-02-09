@@ -23,7 +23,7 @@
   "dependencies": {
     "@moon250/yalogger": "^0.1.0",
     "discord.js": "^14.14.1",
-    "dotenv": "^16.3.1",
+    "dotenv": "^16.3.2",
     "got": "^13.0.0",
     "redis": "^4.6.10",
     "socket.io-client": "^4.7.2",
